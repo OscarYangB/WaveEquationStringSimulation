@@ -57,6 +57,10 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+    float pluckPosition = 0.5f;
+    float leftMicPosition = 0.7f;
+    float rightMicPosition = 0.8f;
+
 private:
     int noteOnIndex = -1;
     float frequency = 0.f;

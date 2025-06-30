@@ -157,15 +157,16 @@ void WaveEquationStringSimulationAudioProcessor::processBlock (juce::AudioBuffer
     for (int sampleNumber = 0; sampleNumber < buffer.getNumSamples(); sampleNumber++)
     {
         if (noteOnIndex == sampleNumber) {
-            simulation.setDisplacement(0.2f, 0.1f);
+            simulation.setDisplacement(pluckPosition, 0.1f);
         }
 
         simulation.update(1.0 / getSampleRate(), frequency);
-        float output = simulation.getDisplacement(0.7f);
+        float output = simulation.getDisplacement(leftMicPosition);
 
         for (int channel = 0; channel < totalNumOutputChannels; ++channel)
         {
-            samples[channel][sampleNumber] = output;
+            samples[channel][sampleNumber] = channel == 1 ? 
+                simulation.getDisplacement(rightMicPosition) : output;
         }
     }
 

@@ -14,7 +14,7 @@
 //==============================================================================
 /**
 */
-class WaveEquationStringSimulationAudioProcessorEditor  : public juce::AudioProcessorEditor
+class WaveEquationStringSimulationAudioProcessorEditor  : public juce::AudioProcessorEditor, juce::Slider::Listener
 {
 public:
     WaveEquationStringSimulationAudioProcessorEditor (WaveEquationStringSimulationAudioProcessor&);
@@ -24,10 +24,16 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
+    void sliderValueChanged(juce::Slider* slider);
+
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     WaveEquationStringSimulationAudioProcessor& audioProcessor;
+
+    juce::Slider pluckSlider;
+    juce::Slider leftMicSlider;
+    juce::Slider rightMicSlider;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WaveEquationStringSimulationAudioProcessorEditor)
 };

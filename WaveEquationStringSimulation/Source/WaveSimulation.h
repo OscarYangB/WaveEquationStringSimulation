@@ -30,4 +30,7 @@ private:
 
     // Converts frequency to Tension divided by Density of the string
     long double frequencyToCoefficient(float frequency);
+
+    // Converts a fractional position from 0.0 to 1.0 to an index
+    int getIndexFromPosition(float position);
 };

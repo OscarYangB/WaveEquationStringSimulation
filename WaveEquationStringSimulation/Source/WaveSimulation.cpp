@@ -50,8 +50,7 @@ void WaveSimulation::update(long double deltaTime, float frequency)
 
 float WaveSimulation::getDisplacement(float position)
 {
-    int index = lround(position * numberOfPoints);
-    return currentPoints[index];
+    return currentPoints[getIndexFromPosition(position)];
 }
 
 void WaveSimulation::setDisplacement(float position, float displacement)
@@ -62,11 +61,20 @@ void WaveSimulation::setDisplacement(float position, float displacement)
         newPoints[i] = 0.0;
     }
 
-    int index = lround(position * numberOfPoints);
-    currentPoints[index] = displacement;
+    currentPoints[getIndexFromPosition(position)] = displacement;
 }
 
 long double WaveSimulation::frequencyToCoefficient(float frequency)
 {
     return frequency*frequency*4.0;
+}
+
+int WaveSimulation::getIndexFromPosition(float position)
+{
+    int index = lround(position * numberOfPoints);
+
+    if (index == 0) index++;
+    if (index >= numberOfPoints - 1) index--;
+
+    return index;
 }
