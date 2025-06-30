@@ -17,9 +17,9 @@ WaveSimulation::WaveSimulation(int newNumberOfPoints)
 {
     numberOfPoints = newNumberOfPoints;
 
-    oldPoints = std::vector<double>(numberOfPoints);
-    currentPoints = std::vector<double>(numberOfPoints);
-    newPoints = std::vector<double>(numberOfPoints);
+    oldPoints = std::vector<long double>(numberOfPoints);
+    currentPoints = std::vector<long double>(numberOfPoints);
+    newPoints = std::vector<long double>(numberOfPoints);
 
     /*for (int i = 1; i < numberOfPoints - 1; i++) {
         double value = 0.1 * sin(M_PI * (double)i / (double)numberOfPoints);
@@ -29,15 +29,18 @@ WaveSimulation::WaveSimulation(int newNumberOfPoints)
     }*/
 }
 
-void WaveSimulation::update(double deltaTime, float frequency)
+void WaveSimulation::update(long double deltaTime, float frequency)
 {
     for (int i = 1; i < numberOfPoints - 1; i++) {
-        double newValue = frequencyToCoefficient(frequency) * deltaTime * deltaTime *
+        long double newValue = frequencyToCoefficient(frequency) * deltaTime * deltaTime *
             (currentPoints[i + 1] + currentPoints[i - 1] - 2 * currentPoints[i]);
         newValue /= 1.0 / (numberOfPoints - 1.0);
         newValue += 2.0 * currentPoints[i]  -oldPoints[i];
         newPoints[i] = newValue;
     }
+
+    newPoints[1] /= 1.1;
+    newPoints[numberOfPoints - 1] /= 1.1;
 
     for (int i = 1; i < numberOfPoints - 1; i++) {
         oldPoints[i] = currentPoints[i];
@@ -63,7 +66,7 @@ void WaveSimulation::setDisplacement(float position, float displacement)
     currentPoints[index] = displacement;
 }
 
-double WaveSimulation::frequencyToCoefficient(float frequency)
+long double WaveSimulation::frequencyToCoefficient(float frequency)
 {
     return frequency*frequency*4.0;
 }

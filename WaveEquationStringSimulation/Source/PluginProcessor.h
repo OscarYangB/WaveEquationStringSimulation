@@ -60,7 +60,7 @@ public:
 private:
     int noteOnIndex = -1;
     float frequency = 0.f;
-    WaveSimulation simulation = WaveSimulation(50);
+    WaveSimulation simulation = WaveSimulation(100);
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (WaveEquationStringSimulationAudioProcessor)

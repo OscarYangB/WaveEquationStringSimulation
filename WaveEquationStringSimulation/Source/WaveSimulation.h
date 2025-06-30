@@ -15,7 +15,7 @@ class WaveSimulation {
 public:
     WaveSimulation(int newNumberOfPoints);
 
-    void update(double deltaTime, float frequency);
+    void update(long double deltaTime, float frequency);
 
     // Position is a fraction of the string length from 0.0 to 1.0
     float getDisplacement(float position);
@@ -24,10 +24,10 @@ public:
 private:
     int numberOfPoints;
 
-    std::vector<double> oldPoints;
-    std::vector<double> currentPoints;
-    std::vector<double> newPoints;
+    std::vector<long double> oldPoints;
+    std::vector<long double> currentPoints;
+    std::vector<long double> newPoints;
 
     // Converts frequency to Tension divided by Density of the string
-    double frequencyToCoefficient(float frequency);
+    long double frequencyToCoefficient(float frequency);
 };
