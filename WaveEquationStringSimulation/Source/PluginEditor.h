@@ -31,6 +31,10 @@ private:
     // access the processor object that created it.
     WaveEquationStringSimulationAudioProcessor& audioProcessor;
 
+    juce::Label pluckLabel;
+    juce::Label leftMicLabel;
+    juce::Label rightMicLabel;
+
     juce::Slider pluckSlider;
     juce::Slider leftMicSlider;
     juce::Slider rightMicSlider;
